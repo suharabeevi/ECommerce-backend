@@ -8,6 +8,7 @@ import { errorHandler } from "./middleware/errorHandling.js";
 import connectDB from "./databse/connection.js";
 import AppError from "./utils/appError.js";
 import { configkeys } from "./config/configkeys.js";
+import  router  from "./router/index.js";
 
 //create express
 const app =express()
@@ -15,7 +16,7 @@ const app =express()
 //middleware
 
 app.use(express.json())
-app.use(urlencoded({extended:true}))
+app.use(express.urlencoded({ extended: true }));
 app.use(cors())
 app.use(morgan("dev"))
 app.use(helmet())
@@ -23,6 +24,7 @@ app.use(helmet())
 //connection DB
 connectDB()
 
+app.use(router)
 
 app.all("*",(req,res,next)=>{
 const err= new AppError(`Can't find ${req.originalUrl}on server`,HttpStatus.NOT_FOUND)

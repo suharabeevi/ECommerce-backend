@@ -6,7 +6,6 @@ const connectDB = async () => {
         dbName: configkeys.DB_NAME,
       };
       await mongoose.connect("mongodb+srv://sairasuhara12345:s6AYGWiUUv7voyEK@cluster0.rzzuwuk.mongodb.net/", dbOptions);
-      console.log(dbOptions);
       console.log("Database connected...");
     } catch (error) {
       console.error("Database connection error", error);
